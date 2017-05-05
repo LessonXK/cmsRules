@@ -34,3 +34,4 @@
 满足多个匹配条件:
 {'query': {'/test/123': ['body[.*]','header[.*]']}}
 {'body': ['test', '1234']}
+{'header': ['publish by KesionCMS','123']}
