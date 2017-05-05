@@ -1,7 +1,9 @@
 # cmsRules
 
+匹配规则：
 [{
     'version': '1.0', 'description': 'KesionCMS',
+    'testUrl': 'xxxxx',
     'match': 
     [
         {'body': '/ks_inc/common.js'},
@@ -9,19 +11,26 @@
 },
 {
     'version': '2.0', 'description': 'KesionCMS',
+    'testUrl': 'xxxxx',
     'match': 
     [
         {'body': 'publish by KesionCMS'}
     ]
 }]
 
-匹配方法：
+匹配字段：
+{'body': 'publish by KesionCMS'}
+{'header': 'publish by KesionCMS'}
+{'robots': 'publish by KesionCMS'}
+{'query': {'/test/123': 'body[publish by KesionCMS]'}}
 
-'body': 'publish by KesionCMS' #响应正文正则匹配
-'header': 'SERVER: .*ASP' #响应头正则匹配
-'robots': '123' #robots.txt正则匹配
-'query': {'/test/123': 'body[.*]'} 
+满足多个规则其中之一:
+'match': 
+[
+    {'body': 'publish by KesionCMS'}
+    {'body': 'publish by KesionCMS'}
+]
 
-需同时满足多个匹配条件时，使用列表形式:
-
-'query': {'/test/123': ['body[.*]','header[.*]']} 
+满足多个匹配条件:
+{'query': {'/test/123': ['body[.*]','header[.*]']}}
+{'body': ['test', '1234']}
