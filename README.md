@@ -22,7 +22,7 @@
 {'body': 'publish by KesionCMS'}  
 {'header': 'publish by KesionCMS'}  
 {'robots': 'publish by KesionCMS'}  
-{'query': {'/test/123': 'body[publish by KesionCMS]'}}  
+{'query': {'/test/123': {'body':'publish by KesionCMS'}}}  
 
 满足多个规则其中之一:  
 'match':  
@@ -35,3 +35,4 @@
 {'query': {'/test/123': ['body[.*]','header[.*]']}}  
 {'body': ['test', '1234']}  
 {'header': ['publish by KesionCMS','123']}  
+{'query': {'/test/123': {'body':['publish by KesionCMS','test']}}}  
