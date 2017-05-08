@@ -42,19 +42,18 @@ class cmsMap(object):
             for rule in rules:
                 match = rule['match']
                 for match_i in match:
-                    for bhr,bhr_rule in match_i.items():
-                        #动态解析类型
-                        if bhr == 'request':
-                            if request.has_key(name):
-                                request[name].append(bhr_rule)
-                            else:
-                                request[name] = [bhr_rule]
-                        #静态解析类型
-                        elif bhr == 'body' or bhr == 'header' or bhr == 'robots':
-                            if search.has_key(name):
-                                search[name].append({bhr:bhr_rule})
-                            else:
-                                search[name] = [{bhr:bhr_rule}]
+                    #动态解析类型
+                    if match_i.has_key('request'):
+                        if request.has_key(name):
+                            request[name].append(match_i['request'])
+                        else:
+                            request[name] = [match_i['request']]
+                    #静态解析类型
+                    elif match_i.has_key('body') or match_i.has_key('header') or match_i.has_key('robots'):
+                        if search.has_key(name):
+                            search[name].append(match_i)
+                        else:
+                            search[name] = [match_i]
     
         return request,search
         
@@ -93,7 +92,7 @@ class cmsMap(object):
                 if isinstance(bhr_rule, list):
                     num = 0
                     for i in bhr_rule:
-                        if not re.search(i, body):
+                        if not re.search(i, body, re.IGNORECASE):
                             break
                         num = num + 1
                     if num == len(bhr_rule): 
@@ -104,7 +103,7 @@ class cmsMap(object):
                         break
                 #需满足单个规则
                 elif isinstance(bhr_rule, str):
-                    if re.search(bhr_rule, body):
+                    if re.search(bhr_rule, body, re.IGNORECASE):
                         flag = True
                         result = rule
                     else:
@@ -116,7 +115,7 @@ class cmsMap(object):
                 if isinstance(bhr_rule, list):
                     num = 0
                     for i in bhr_rule:
-                        if not re.search(i, robots):
+                        if not re.search(i, robots, re.IGNORECASE):
                             break
                         num = num + 1
                     if num == len(bhr_rule): 
@@ -127,7 +126,7 @@ class cmsMap(object):
                         break
                 #需满足单个规则
                 elif isinstance(bhr_rule, str):
-                    if re.search(bhr_rule, robots):
+                    if re.search(bhr_rule, robots, re.IGNORECASE):
                         flag = True
                         result = rule
                     else:
@@ -135,15 +134,16 @@ class cmsMap(object):
                         break
             #=======SERVER HEADERS======    
             elif bhr == 'header' and len(headers) != 0:
+                self.__logger.debug(self.__header)
                 for header,header_rule in bhr_rule.items():
-                    if not self.__header.hak_key(header):
+                    if not self.__header.has_key(header.lower()):
                         flag = False
                         break
                     #需满足多个规则 
                     elif isinstance(header_rule, list):
                         num = 0
                         for i in bhr_rule:
-                            if not re.search(i, headers[header]):
+                            if not re.search(i, headers[header.lower()], re.IGNORECASE):
                                 break
                             num = num + 1
                         if num == len(header_rule):
@@ -154,7 +154,7 @@ class cmsMap(object):
                             break
                     #需满足单个规则
                     elif isinstance(header_rule, str):
-                        if re.search(header_rule, headers[header]):
+                        if re.search(header_rule, headers[header.lower()], re.IGNORECASE):
                             flag = True
                             result = rule
                         else:
@@ -265,12 +265,12 @@ class cmsMap(object):
             rep.raise_for_status()
             data['content'] = rep.content
             data['code'] = rep.status_code
-            data['headers'] = r.headers
+            data['headers'] = dict(rep.headers)
             data['realUrl'] = rep.url
         except requests.HTTPError as e:
             data['content'] = rep.content
             data['errorMsg'] = str(e)
-            data['headers'] = r.headers
+            data['headers'] = dict(rep.headers)
             data['code'] = rep.status_code
             self.__logger.debug(url+" : "+data['errorMsg'])
         except requests.ConnectionError as e:
@@ -363,9 +363,11 @@ class cmsMap(object):
                     self.__logger.error(self.__target+ ' :测试站点访问异常')
                 else:
                     if self.__search.has_key(ruleName):
+                        self.__logger.debug(str({ruleName: self.__search[ruleName]}))
                         result = self.__checkStaticRules(ruleCustom={ruleName: self.__search[ruleName]})
                         self.__logger.log(41, str(result))
                     if self.__request.has_key(ruleName):
+                        self.__logger.debug(str({ruleName: self.__request[ruleName]}))
                         result = result = self.__checkDynamicRules(ruleCustom={ruleName: self.__request[ruleName]})
                         self.__logger.log(41, str(result))
             
