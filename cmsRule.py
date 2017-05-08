@@ -52,6 +52,7 @@ class cmsRules(object):
         'match': 
         [
             {'body': 'content="WordPress'},
+            {'request': {'/wp-login.php': {'body': 'action=lostpassword'}}},
             {'header': {'X-Pingback': '/xmlrpc.php'}, 'body': '/wp-includes/'}
         ]
     }]

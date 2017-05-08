@@ -259,9 +259,9 @@ class cmsMap(object):
         try:
             self.__logger.debug(url)
             #自动读取存储的Cookies
-            r = requests.session()
+            #r = requests.session()
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0'}
-            rep = r.get(url, headers=headers, timeout=10)
+            rep = requests.get(url, headers=headers, timeout=10)
             #抛出响应为200外的异常
             rep.raise_for_status()
             data['content'] = rep.content
@@ -398,7 +398,7 @@ def logger(v):
     except ImportError:
         handler = logging.StreamHandler(sys.stdout)
     
-    formatter = logging.Formatter("%(message)s", "%Y-%m-%d %H:%M:%S") 
+    formatter = logging.Formatter("[%(funcName)s] %(message)s", "%Y-%m-%d %H:%M:%S") 
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     logger.setLevel(v*10)
