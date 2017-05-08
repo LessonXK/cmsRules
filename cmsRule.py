@@ -201,3 +201,12 @@ class cmsRules(object):
         ]
     }]
     
+    yuanlue = [{
+            
+        'version': 'All', 'description': 'yuanlueSoft',
+        'testUrl': 'http://www.zhangzhou.gov.cn/',
+        'match': 
+        [
+            {'body': '<LINK charset="UTF-8" href="/cms/templates/\d+/css/header\.css'}
+        ]
+    }]
