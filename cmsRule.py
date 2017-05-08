@@ -45,14 +45,14 @@ class cmsRules(object):
         ]
     }]
     
-    ndasec = [{
+    wordpress = [{
             
-        'version': 'All', 'description': 'NDASEC WEBSITE',
-        'testUrl': 'http://www.ndasec.com',
+        'version': 'All', 'description': 'WordPress',
+        'testUrl': 'http://http://68.46.4.97:44818/',
         'match': 
         [
-            {'body': ['/css/v2/common.css','/js/bootstrap.min.js']},
-            {'request': {'/aboutus':{'body':['/product_service','/js/bootstrap.min.js']},'/':{'body': 'bbbbbbbbbbbbb'}}}
+            {'body': 'content=\"WordPress'},
+            {'header': {'X-Pingback': '/xmlrpc.php'}, 'body': '/wp-includes/'}
         ]
     }]
     
