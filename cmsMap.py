@@ -257,6 +257,7 @@ class cmsMap(object):
             'realUrl': None     #真实URL
         }
         try:
+            self.__logger.debug(url)
             #自动读取存储的Cookies
             r = requests.session()
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0'}
@@ -328,7 +329,7 @@ class cmsMap(object):
         '''查询动态规则列表'''
         for name,rules in self.__search.items():
             self.__logger.log(41, str({name: rules}))
-        
+    
     def checkCmsMap(self, target):
         '''判断目标的CMS类型
            args:target-测试的目标

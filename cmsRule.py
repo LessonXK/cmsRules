@@ -120,7 +120,7 @@ class cmsRules(object):
         'testUrl': 'http://80.229.149.166:1080/',
         'match': 
         [
-            {'body': 'jQuery.extend(Drupal.settings'},
+            {'body': 'jQuery.extend\(Drupal.settings'},
             {'body': ['/sites/default/files/', '/sites/all/modules/', '/sites/all/themes/']},
             {'header': {'X-Generator': 'Drupal'}},
             {'body': 'content="Drupal'}
@@ -134,6 +134,70 @@ class cmsRules(object):
         'match': 
         [
             {'body': '/app/home/skins/default/style.css'}
+        ]
+    }]
+    
+    jeecms = [{
+            
+        'version': 'All', 'description': 'JeeCms',
+        'testUrl': 'http://59.110.105.40',
+        'match': 
+        [
+            {'body': ['Powered by', 'http://www.jeecms.com', 'JEECMS']},
+            {'body': '<title>Powered by JEECMS</title>'},
+            {'request': {'/jeeadmin/jeecms/login.do': {'body': '/res/jeecms/css/admin.css'}}}
+        ]
+    }]
+    
+    phpcms = [{
+            
+        'version': 'All', 'description': 'phpCMS',
+        'testUrl': 'http://www.cscglzdwgov.com.cn/',
+        'match': 
+        [
+            {'body': '/data/config.js'},
+            {'body': 'content="Phpcms'},
+            {'body': 'Powered by Phpcms'},
+            {'body': ['Powered by', 'http://www.phpcms.cn']},
+            {'body': 'templates/default/skins/default/phpcms.css'}
+        ]
+    }]
+    
+    pageadmin = [{
+            
+        'version': 'All', 'description': 'pageAdmin',
+        'testUrl': 'http://wmb.shmtu.edu.cn/',
+        'match': 
+        [
+            {'body': 'content="PageAdmin'},
+            {'body': 'Powered by PageAdmin'},
+            {'body': "Powered by <a href='http://www.pageadmin.net'"},
+            {'request': {'/e/master/login.aspx': {'body': '<link rel="stylesheet" href="master.css'}}}
+        ]
+    }]
+    
+    _74cms = [{
+            
+        'version': 'All', 'description': '74CMS',
+        'testUrl': 'http://218.201.212.11:8080',
+        'match': 
+        [
+            {'body': 'content="74cms.com'},
+            {'body': 'content="\xc6\xef\xca\xbfCMS'},
+            {'body': 'Powered by <a href="http://www.74cms.com/"'},
+            {'body': ['/templates/default/css/common.css', 'selectjobscategory']}
+        ]
+    }]
+    
+    phpshe = [{
+            
+        'version': 'All', 'description': 'phpShe',
+        'testUrl': 'http://182.61.102.110',
+        'match': 
+        [
+            {'body': ['Powered by', 'http://www.phpshe.com']},
+            {'request': {'/admin.php?mod=do&act=login': {'body': 'include/class/authcode\.class\.php\?w=80&h=32'}}}
+            
         ]
     }]
     
