@@ -41,7 +41,18 @@ class cmsRules(object):
         'testUrl': 'xxxxx',
         'match': 
         [
-            {'body': '/inc/AspCms_AdvJs.asp"'}
+            {'body': '/inc/AspCms_AdvJs.asp'}
+        ]
+    }]
+    
+    ndasec = [{
+            
+        'version': 'All', 'description': 'NDASEC WEBSITE',
+        'testUrl': 'http://www.ndasec.com',
+        'match': 
+        [
+            {'body': ['/css/v2/common.css','/js/bootstrap.min.js']},
+            {'request': {'/aboutus':{'body':['/product_service','/js/bootstrap.min.js']},'/':{'body': 'bbbbbbbbbbbbb'}}}
         ]
     }]
     
