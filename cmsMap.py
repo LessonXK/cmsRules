@@ -310,7 +310,11 @@ class cmsMap(object):
                     descript = i['description']
                     self.__logger.log(41, 'CMS is identificat : '+str([name, version, descript]))
                     break
-                
+    
+    def queryRulesCount(self):
+        '''查询所有规则数量'''
+        return len(self.__rules)
+        
     def setLogger(self, logger):
         '''添加日志记录'''
         self.__logger = logger
@@ -319,17 +323,20 @@ class cmsMap(object):
         '''查询所有规则列表'''
         for name,rules in self.__rules.items():
             self.__logger.log(41, str({name: rules}))
-    
+        return self.__rules
+        
     def queryRulesReuqest(self):
         '''查询静态规则列表'''
         for name,rules in self.__request.items():
             self.__logger.log(41, str({name: rules}))
+        return self.__request
         
     def queryRulesSearch(self):
         '''查询动态规则列表'''
         for name,rules in self.__search.items():
             self.__logger.log(41, str({name: rules}))
-    
+        return self.__search
+        
     def checkCmsMap(self, target):
         '''判断目标的CMS类型
            args:target-测试的目标
@@ -415,6 +422,7 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--dynamic', dest='request', action='store_true', help='show dynamic rules')
     parser.add_argument('-a', '--all', dest='rules', action='store_true', help='show all rules')
     parser.add_argument('-v', dest='verbose', choices=[1,2,3], default=4, type=int, help='show debug')
+    parser.add_argument('--count', dest='count', action='store_true', help='show count of rules')
     
     p = parser.parse_args()
     cmsMap = cmsMap()
@@ -437,6 +445,9 @@ if __name__ == '__main__':
         cmsMap.queryRulesSearch()
     elif p.request:
         cmsMap.queryRulesReuqest()
+    elif p.count:
+        count = cmsMap.queryRulesCount()
+        print count
     else:
         parser.print_help()  
     

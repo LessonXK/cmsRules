@@ -134,7 +134,7 @@ class cmsRules(object):
         'testUrl': 'http://www.diwuqu.com/',
         'match': 
         [
-            {'body': '/app/home/skins/default/style.css'}
+            {'body': '/app/home/skins/default/style\.css'}
         ]
     }]
     
@@ -146,7 +146,7 @@ class cmsRules(object):
         [
             {'body': ['Powered by', 'http://www.jeecms.com', 'JEECMS']},
             {'body': '<title>Powered by JEECMS</title>'},
-            {'request': {'/jeeadmin/jeecms/login.do': {'body': '/res/jeecms/css/admin.css'}}}
+            {'request': {'/jeeadmin/jeecms/login.do': {'body': '/res/jeecms/css/admin\.css'}}}
         ]
     }]
     
@@ -160,7 +160,7 @@ class cmsRules(object):
             {'body': 'content="Phpcms'},
             {'body': 'Powered by Phpcms'},
             {'body': ['Powered by', 'http://www.phpcms.cn']},
-            {'body': 'templates/default/skins/default/phpcms.css'}
+            {'body': 'templates/default/skins/default/phpcms\.css'}
         ]
     }]
     
@@ -184,9 +184,9 @@ class cmsRules(object):
         'match': 
         [
             {'body': 'content="74cms.com'},
-            {'body': 'content="\xc6\xef\xca\xbfCMS'},
+            {'body': b'content="骑士CMS'},
             {'body': 'Powered by <a href="http://www.74cms.com/"'},
-            {'body': ['/templates/default/css/common.css', 'selectjobscategory']}
+            {'body': ['/templates/default/css/common\.css', 'selectjobscategory']}
         ]
     }]
     
@@ -205,9 +205,165 @@ class cmsRules(object):
     yuanlue = [{
             
         'version': 'All', 'description': 'yuanlueSoft',
-        'testUrl': 'http://www.zhangzhou.gov.cn/',
+        'testUrl': 'http://www\.zhangzhou\.gov\.cn/',
         'match': 
         [
             {'body': '<LINK charset="UTF-8" href="/cms/templates/\d+/css/header\.css'}
         ]
     }]
+    
+    twcms = [{
+            
+        'version': 'All', 'description': 'TWCMS',
+        'testUrl': 'http://www.twcms.com/',
+        'match': 
+        [
+            {'body': ['/twcms/theme/','/css/global.css']}
+        ]
+    }]
+    
+    siteserver = [{
+            
+        'version': 'All', 'description': 'SiteServer CMS',
+        'testUrl': 'http://www.czwtmme.com/',
+        'match': 
+        [
+            {'body': ['siteserver', 'sitefiles']},
+            {'body': ['Powered by', 'http://www\.siteserver\.cn', 'SiteServer CMS']},
+            {'body': '<title>Powered by SiteServer CMS</title>'},
+            {'body': b'T_系统首页模板'}
+        ]
+    }]
+    
+    hdwiki = [{
+            
+        'version': 'All', 'description': 'HDWiki',
+        'testUrl': 'http://wiki.nongwang.com/',
+        'match': 
+        [
+            {'header': {'Set-Cookie' : 'hd_sid='}},
+            {'body': 'http://kaiyuan\.hudong\.com\?hf=hdwiki_copyright_kaiyuan'},
+            {'body': 'content="HDWiki'},
+            {'body': '<title>powered by hdwiki!</title>'}
+        ]
+    }]
+    
+    cmstop = [{
+            
+        'version': 'All', 'description': 'CMSTOP',
+        'testUrl': 'http://www.lezhichina.com/',
+        'match': 
+        [
+            {'body': '/css/cmstop-common\.css'},
+            {'body': '/js/cmstop-common\.js'},
+            {'body': 'cmstop-list-text\.css'},
+            {'body': '<a class="poweredby" href="http://www\.cmstop\.com"'}
+        ]
+    }]
+    
+    espcms = [{
+            
+        'version': 'All', 'description': 'ESPCMS',
+        'testUrl': 'http://www.ixichong.cn/',
+        'match': 
+        [
+            {'body': ['infolist_fff', '/templates/default/style/tempates_div\.css']},
+            {'body': 'Powered by ESPCMS'}
+        ]
+    }]
+    
+    evecom = [{
+            
+        'version': 'All', 'description': 'EVECOM CMS',
+        'testUrl': 'http://www.pingtan.gov.cn/',
+        'match': 
+        [
+            {'body': 'href="/jhtml/ct/ct_\d{4}_\d{5}"'}
+        ]
+    }]
+    
+    foosun = [{
+            
+        'version': 'All', 'description': 'DotNetCMS',
+        'testUrl': 'http://www.lichenonline.com.cn/',
+        'match': 
+        [
+            {'body': 'For Foosun'},
+            {'body': 'Created by DotNetCMS'},
+            {'body': 'Powered by www\.Foosun\.net,Products:Foosun Content Manage system'}
+        ]
+    }]
+    
+    hanweb = [{
+            
+        'version': 'All', 'description': 'HanWEB',
+        'testUrl': 'http://cupd.cscec.com/',
+        'match': 
+        [
+            {'body': '/jcms_files/jcms'},
+            {'body': '<a href=\'http://www\.hanweb\.com\' style=\'display:none\'>'},
+            {'body': b'<meta name=\'Generator\' content=\'大汉版通\'>'},
+            {'body': b'<meta name=\'Author\' content=\'大汉网络\'>'},
+            {'body': b'Produced By 大汉网络'}
+        ]
+    }]
+    
+    npoint = [{
+            
+        'version': 'All', 'description': 'Npoint',
+        'testUrl': 'http://192.151.154.82:8080/',
+        'match': 
+        [
+            {'body': '<title>Powered by Npoint</title>'},
+            {'body': 'onClick="this\.src=\'\.\./inc/usercode\.asp\?npoint='}
+        ]
+    }]
+    
+    emlog = [{
+            
+        'version': 'All', 'description': 'Emlog CMS',
+        'testUrl': 'http://www.0797kj.com/',
+        'match': 
+        [
+            {'body': 'content="emlog"'}
+        ]
+    }]
+    
+    ideacms = [{
+            
+        'version': 'All', 'description': 'IdeaCMS',
+        'testUrl': 'http://222.208.39.143/',
+        'match': 
+        [
+            {'body': 'Powered By IdeaCMS'},
+            {'body': 'm_ctr32'}
+        ]
+    }]
+    
+    tccms = [{
+            
+        'version': 'All', 'description': 'TCCMS',
+        'testUrl': 'http://186181.com/',
+        'match': 
+        [
+            {'body': '<title>Power By TCCMS</title>'},
+            {'body': ['index\.php\?ac=link_more', 'index\.php\?ac=news_list']}
+        ]
+    }]
+    
+    trscms = [{
+            
+        'version': 'All', 'description': 'TRSCMS',
+        'testUrl': 'http://219.137.59.237:3260/',
+        'match': 
+        [
+            {'body': '0;URL=/wcm'},
+            {'body': '/wcm/app/js'},
+            {'body': 'window\.location\.href = "/wcm";'},
+            {'body': ['forum\.trs\.com\.cn', 'wcm']},
+            {'body': b'/wcm" target="_blank">网站管理'},
+            {'body': b'/wcm" target="_blank">管理'}
+        ]
+    }]
+    
+    
