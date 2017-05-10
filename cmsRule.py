@@ -366,4 +366,56 @@ class cmsRules(object):
         ]
     }]
     
+    keyicms = [{
+            
+        'version': 'All', 'description': 'KEYICMS',
+        'testUrl': 'http://www.bj-buszc.com/',
+        'match': 
+        [
+            {'body': '/Template/PC/Default/css/css\.css'},
+            {'body': '/Template/PC/Default 2\.0/css/css\.css'},
+        ]
+    }]
     
+    scms = [{
+            
+        'version': 'All', 'description': 'S-CMS',
+        'testUrl': 'http://www.21jining.com',
+        'match': 
+        [
+            {'body': '/template/s11/wp-content/themes/superscroll-ys/style.css'},
+        ]
+    }]
+    
+    edjoy = [{
+            
+        'version': 'All', 'description': 'ECSCMS',
+        'testUrl': 'http://58.214.234.195/',
+        'match': 
+        [
+            {'body': '<edjoy>(\r\n)?$'},
+        ]
+    }]
+    
+    sdcms = [{
+            
+        'version': 'All', 'description': 'SDCMS',
+        'testUrl': 'http://219.137.59.237:3260/',
+        'match': 
+        [
+            {'body': 'powered by sdcms'},
+            {'body': ['var webroot=', '/js/sdcms.js']}
+        ]
+    }]
+    
+    finecms = [{
+            
+        'version': 'All', 'description': 'TRSCMS',
+        'testUrl': 'http://www.wdngtjq.com/',
+        'match': 
+        [
+            {'body': 'Powered by FineCMS'},
+            {'body': 'dayrui@gmail.com'},
+            {'body': 'Copyright" content="FineCMS'}
+        ]
+    }]
