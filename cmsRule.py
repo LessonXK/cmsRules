@@ -184,7 +184,7 @@ class cmsRules(object):
         'match': 
         [
             {'body': 'content="74cms.com'},
-            {'body': b'content="骑士CMS'},
+            {'body': u'content="骑士CMS'},
             {'body': 'Powered by <a href="http://www.74cms.com/"'},
             {'body': ['/templates/default/css/common\.css', 'selectjobscategory']}
         ]
@@ -231,7 +231,7 @@ class cmsRules(object):
             {'body': ['siteserver', 'sitefiles']},
             {'body': ['Powered by', 'http://www\.siteserver\.cn', 'SiteServer CMS']},
             {'body': '<title>Powered by SiteServer CMS</title>'},
-            {'body': b'T_系统首页模板'}
+            {'body': u'T_系统首页模板'}
         ]
     }]
     
@@ -297,14 +297,14 @@ class cmsRules(object):
     hanweb = [{
             
         'version': 'All', 'description': 'HanWEB',
-        'testUrl': 'http://cupd.cscec.com/',
+        'testUrl': 'http://www.njqh.gov.cn/',
         'match': 
         [
             {'body': '/jcms_files/jcms'},
             {'body': '<a href=\'http://www\.hanweb\.com\' style=\'display:none\'>'},
-            {'body': b'<meta name=\'Generator\' content=\'大汉版通\'>'},
-            {'body': b'<meta name=\'Author\' content=\'大汉网络\'>'},
-            {'body': b'Produced By 大汉网络'}
+            {'body': u'<meta name=\'Generator\' content=\'大汉版通\'>'},
+            {'body': u'<meta name=\'Author\' content=\'大汉网络\'>'},
+            {'body': u'Produced By 大汉网络'}
         ]
     }]
     
@@ -361,8 +361,8 @@ class cmsRules(object):
             {'body': '/wcm/app/js'},
             {'body': 'window\.location\.href = "/wcm";'},
             {'body': ['forum\.trs\.com\.cn', 'wcm']},
-            {'body': b'/wcm" target="_blank">网站管理'},
-            {'body': b'/wcm" target="_blank">管理'}
+            {'body': u'/wcm" target="_blank">网站管理'},
+            {'body': u'/wcm" target="_blank">管理'}
         ]
     }]
     
@@ -417,5 +417,17 @@ class cmsRules(object):
             {'body': 'Powered by FineCMS'},
             {'body': 'dayrui@gmail.com'},
             {'body': 'Copyright" content="FineCMS'}
+        ]
+    }]
+    
+    tongda = [{
+            
+        'version': 'All', 'description': 'tongdaOA',
+        'testUrl': 'http://121.30.232.50:902/',
+        'match': 
+        [
+            {'body': 'Office Anywhere 2013'},
+            {'body': ['<br><br><h2>OA', '<b><u>"\+allEmements\[i\]\.src\+"</u></b></div>']},
+            {'body': 'C<link rel="shortcut icon" href="/images/tongda\.ico" />'}
         ]
     }]

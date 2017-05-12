@@ -10,6 +10,7 @@ import logging
 import requests
 import urlparse
 import argparse
+import chardet
 
 try:
     from cmsRule import cmsRules
@@ -102,7 +103,8 @@ class cmsMap(object):
                         flag = False
                         break
                 #需满足单个规则
-                elif isinstance(bhr_rule, str):
+                elif isinstance(bhr_rule, str) or isinstance(bhr_rule, unicode):
+                    self.__logger.debug(bhr_rule)
                     if re.search(bhr_rule, body, re.IGNORECASE):
                         flag = True
                         result = rule
@@ -125,7 +127,7 @@ class cmsMap(object):
                         flag = False
                         break
                 #需满足单个规则
-                elif isinstance(bhr_rule, str):
+                elif isinstance(bhr_rule, str) or isinstance(bhr_rule, unicode):
                     if re.search(bhr_rule, robots, re.IGNORECASE):
                         flag = True
                         result = rule
@@ -153,7 +155,7 @@ class cmsMap(object):
                             flag = False 
                             break
                     #需满足单个规则
-                    elif isinstance(header_rule, str):
+                    elif isinstance(header_rule, str) or isinstance(bhr_rule, unicode):
                         if re.search(header_rule, headers[header.lower()], re.IGNORECASE):
                             flag = True
                             result = rule
@@ -264,12 +266,17 @@ class cmsMap(object):
             rep = requests.get(url, headers=headers, timeout=10)
             #抛出响应为200外的异常
             rep.raise_for_status()
-            data['content'] = rep.content
+            charset = chardet.detect(rep.content)
+            content = rep.content.decode(charset['encoding'])
+            #self.__logger.debug(content)
+            data['content'] = content
             data['code'] = rep.status_code
             data['headers'] = dict(rep.headers)
             data['realUrl'] = rep.url
         except requests.HTTPError as e:
-            data['content'] = rep.content
+            charset = chardet.detect(rep.content)
+            content = rep.content.decode(charset['encoding'])
+            data['content'] = content
             data['errorMsg'] = str(e)
             data['headers'] = dict(rep.headers)
             data['code'] = rep.status_code
