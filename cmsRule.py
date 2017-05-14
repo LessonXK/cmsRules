@@ -431,3 +431,47 @@ class cmsRules(object):
             {'body': 'C<link rel="shortcut icon" href="/images/tongda\.ico" />'}
         ]
     }]
+
+    joomla = [{
+    
+        'version': 'All', 'description': '逐浪joomla CMS',
+        'testUrl': 'http://www.xjrsd.com.cn',
+        'match':
+        [
+            {'body': 'script src="http://code\.zoomla\.cn/'},
+            {'body': ['NodePage.aspx', 'Item']},
+            {'body': '/style/images/win8_symbol_140x140\.png'}
+        ]
+    }]
+
+    zhengfang = [{
+    
+        'version': 'All', 'description': '正方教务管理系统',
+        'testUrl': 'http://58.221.183.101:70/',
+        'match':
+        [
+            {'body': 'style/base/jw\.css'}
+        ]
+    }]
+
+    deepsoon = [{
+    
+        'version': 'All', 'description': 'deepsoon地平线CMS',
+        'testUrl': 'http://www.qiaochang.com/',
+        'match':
+        [
+            {'body': 'labelOppInforStyle'},
+            {'body': '<title>Powered by deep soon</title>'},
+            {'body': ['search_result.aspx', 'frmsearch']}
+        ]
+    }]
+
+    rcms = [{
+    
+        'version': 'All', 'description': 'RCMS',
+        'testUrl': 'http://111.30.12.6:8333/',
+        'match':
+        [
+            {'body': ['jhtml', '/r/cms/www/']}
+        ]
+    }]
