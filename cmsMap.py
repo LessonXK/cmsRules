@@ -246,7 +246,7 @@ class cmsMap(object):
     #重组URL
     def __urlUnParse(self, path=''):
         
-        return self.__target[:len(self.__target)-self.__target[::-1].find('/')] + path
+        return self.__target.split('?')[0][:len(self.__target)-self.__target[::-1].find('/')] + path
         
     #请求URL
     def __requestUrl(self, url):
