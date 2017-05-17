@@ -475,3 +475,46 @@ class cmsRules(object):
             {'body': ['jhtml', '/r/cms/www/']}
         ]
     }]
+
+    tourcms = [{
+    
+        'version': 'All', 'description': 'TourAdmin',
+        'testUrl': 'http://xmlyt.cn/',
+        'match':
+        [
+            {'body': '/Views/about.aspx#aboutus'}
+        ]
+    }]
+
+    sitestart = [{
+    
+        'version': 'All', 'description': 'SiteStart 建站之星',
+        'testUrl': 'http://www.fjgsgl.com/',
+        'match':
+        [
+            {'body': u'content="建站专家--建站之星 sitestar"'},
+            {'body': '/index\.php\?_m=mod_article&_a=article_content&article_id='}
+        ]
+    }]
+
+    dbmail = [{
+    
+        'version': 'All', 'description': '遥志DBMAIL邮件服务器',
+        'testUrl': 'http://58.242.130.10/',
+        'match':
+        [
+            {'body': '<body class="login" topmargin=0 bottommargin=0 leftmargin=1 rightmargin=1 border=0 onKeydown=procKeyPress(event)>'}
+        ]
+    }]
+
+    discuz = [{
+    
+        'version': 'All', 'description': 'Discuz论坛系统',
+        'testUrl': 'http://www.qiaochang.com/',
+        'match':
+        [
+            {'body': ['discuz_uid', 'portal.php\?mod=']},
+            {'body': 'content=\"Discuz'},
+            {'body': 'Powered by Discuz'}
+        ]
+    }]
