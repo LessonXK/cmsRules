@@ -11,6 +11,7 @@ import requests
 import urlparse
 import argparse
 import chardet
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 try:
     from cmsRule import cmsRules
@@ -134,11 +135,11 @@ class cmsMap(object):
                     else:
                         flag = False
                         break
-            #=======SERVER HEADERS======    
+            #=======SERVER HEADERS======   hak problem/?? //多个规则判断逻辑和大小写问题
             elif bhr == 'header' and len(headers) != 0:
                 self.__logger.debug(self.__header)
                 for header,header_rule in bhr_rule.items():
-                    if not self.__header.has_key(header.lower()):
+                    if not self.__header.has_key(header):
                         flag = False
                         break
                     #需满足多个规则 
@@ -156,7 +157,7 @@ class cmsMap(object):
                             break
                     #需满足单个规则
                     elif isinstance(header_rule, str) or isinstance(bhr_rule, unicode):
-                        if re.search(header_rule, headers[header.lower()], re.IGNORECASE):
+                        if re.search(header_rule, headers[header], re.IGNORECASE):
                             flag = True
                             result = rule
                         else:
@@ -263,6 +264,7 @@ class cmsMap(object):
             #自动读取存储的Cookies
             #r = requests.session()
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0'}
+            requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
             rep = requests.get(url, headers=headers, timeout=10)
             #抛出响应为200外的异常
             rep.raise_for_status()
@@ -375,7 +377,7 @@ class cmsMap(object):
             for rule in self.__rules[ruleName]:
                 self.__target = rule['testUrl']
                 if not self.__getTargetInfo():
-                    self.__logger.error(self.__target+ ' :测试站点访问异常')
+                    self.__logger.error(self.__target+ u' :测试站点访问异常')
                 else:
                     if self.__search.has_key(ruleName):
                         self.__logger.debug(str({ruleName: self.__search[ruleName]}))
@@ -394,7 +396,7 @@ class cmsMap(object):
             for rule in rules:
                 self.__target = rule['testUrl']
                 if not self.__getTargetInfo():
-                    self.__logger.error(self.__target+ ' :测试站点访问异常')
+                    self.__logger.error(self.__target+ u' :测试站点访问异常')
                 else:
                     if self.__checkStaticRules() == False and self.__checkDynamicRules() == False:
                         self.__logger.log(41, str({name: rule}))

@@ -432,9 +432,9 @@ class cmsRules(object):
         ]
     }]
 
-    joomla = [{
+    zoomla = [{
     
-        'version': 'All', 'description': '逐浪joomla CMS',
+        'version': 'All', 'description': '逐浪zoomla CMS',
         'testUrl': 'http://www.xjrsd.com.cn',
         'match':
         [
@@ -488,7 +488,7 @@ class cmsRules(object):
 
     sitestart = [{
     
-        'version': 'All', 'description': 'SiteStart 建站之星',
+        'version': 'All', 'description': u'SiteStart 建站之星',
         'testUrl': 'http://www.fjgsgl.com/',
         'match':
         [
@@ -509,12 +509,46 @@ class cmsRules(object):
 
     discuz = [{
     
-        'version': 'All', 'description': 'Discuz论坛系统',
+        'version': 'All', 'description': u'Discuz论坛系统',
         'testUrl': 'http://www.qiaochang.com/',
         'match':
         [
             {'body': ['discuz_uid', 'portal.php\?mod=']},
             {'body': 'content=\"Discuz'},
             {'body': 'Powered by Discuz'}
+        ]
+    }]
+
+    thinkphp = [{
+    
+        'version': 'All', 'description': 'ThinkPHP',
+        'testUrl': 'https://www.douyajinrong.com/',
+        'match':
+        [
+            {'header': {'x-powered-by': 'thinkphp'}},
+            {'header': {'Set-Cookie': 'think_template'}}
+        ]
+    }]
+
+    turbomail = [{
+    
+        'version': 'All', 'description': u'TurboMail邮件系统',
+        'testUrl': 'http://mail.gddx.gov.cn',
+        'match':
+        [
+            {'body': 'Powered by TurboMail'},
+            {'body': 'wzcon1 clearfix'},
+            {'body': u'TurboMail邮件系统'}
+        ]
+    }]
+
+    zblog = [{
+    
+        'version': 'All', 'description': 'Z-Blog',
+        'testUrl': 'http://www.vvvwo.com/',
+        'match':
+        [
+            {'body': 'Powered By Z-Blog'},
+            {'body': ['str00','strBatchView']}
         ]
     }]
