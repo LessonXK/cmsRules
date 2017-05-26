@@ -552,3 +552,13 @@ class cmsRules(object):
             {'body': ['str00','strBatchView']}
         ]
     }]
+
+    pkpmjg = [{
+    
+        'version': 'All', 'description': u'工程质量信息检测平台',
+        'testUrl': 'http://175.6.228.226/',
+        'match':
+        [
+            {'body': 'window\.location\.href = "web/WebReg"'}
+        ]
+    }]
