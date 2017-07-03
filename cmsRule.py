@@ -249,7 +249,7 @@ class cmsRules(object):
     }]
     
     cmstop = [{
-            
+        
         'version': 'All', 'description': 'CMSTOP',
         'testUrl': 'http://www.lezhichina.com/',
         'match': 
@@ -560,5 +560,16 @@ class cmsRules(object):
         'match':
         [
             {'body': 'window\.location\.href = "web/WebReg"'}
+        ]
+    }]
+
+    wuzhicms = [{
+    
+        'version': 'All', 'description': u'五指CMS',
+        'testUrl': 'http://www.fjyc110.gov.cn/',
+        'match':
+        [
+            {'body': ['var cookie_pre =', 'var web_url =', 'var cookie_path =']},
+            {'body': 'index.php\?v=listing&cid=\d+&page=\d+'}
         ]
     }]
